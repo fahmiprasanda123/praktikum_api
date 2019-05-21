@@ -8,4 +8,7 @@ class mahasiswa extends Model
 {
     //
     protected $table = 'mahasiswa';
+    public function user(){
+    	return $this->hasMany('app\User');
+    }
 }

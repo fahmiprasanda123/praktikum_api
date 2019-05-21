@@ -8,4 +8,7 @@ class User extends Model
 {
     //
     protected $table = 'user';
+    public function mahasiswa(){
+    	return $this->belongsTo('app\mahasiswa');
+    }
 }
