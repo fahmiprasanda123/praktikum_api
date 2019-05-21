@@ -13,8 +13,8 @@
 Route::get('/user','Controlleruser@index');
 Route::get('/user/{id}','Controlleruser@show');
 Route::post('/user/store','Controlleruser@store');
-Route::post('/user/update/{id}','Controlleruser@update');
-Route::post('/user/delete/{id}','Controlleruser@destroy');
+Route::put('/user/update/{id}','Controlleruser@update');
+Route::delete('/user/delete/{id}','Controlleruser@destroy');
 
 Route::get('/', function () {
     return view('welcome');

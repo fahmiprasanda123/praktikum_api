@@ -18,7 +18,7 @@ class ControllerUser extends Controller
 
     if(count($data) > 0){ //mengecek apakah data kosong atau tidak
         $res['message'] = "Success!";
-        $res['values'] = $data;
+        $res['user'] = $data;
         return response($res);
     }
     else{
@@ -78,7 +78,7 @@ class ControllerUser extends Controller
 
     if(count($data) > 0){ //mengecek apakah data kosong atau tidak
         $res['message'] = "Success!";
-        $res['values'] = $data;
+        $res['user'] = $data;
         return response($res);
     }
     else{
@@ -121,7 +121,7 @@ public function update(Request $request, $id)
 
     if($data->save()){
         $res['message'] = "Success!";
-        $res['value'] = "$data";
+        $res['user'] = "$data";
         return response($res);
     }
     else{
@@ -143,7 +143,7 @@ public function update(Request $request, $id)
 
     if($data->delete()){
         $res['message'] = "Success!";
-        $res['value'] = "$data";
+        $res['user'] = "$data";
         return response($res);
     }
     else{

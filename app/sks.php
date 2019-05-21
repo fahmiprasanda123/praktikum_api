@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Jadwal extends Model
+class sks extends Model
 {
     //
-    protected $table = 'jadwal';
+    protected $table = 'sks';
 }
