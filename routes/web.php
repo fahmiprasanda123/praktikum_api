@@ -22,6 +22,16 @@ Route::delete('/user/delete/{id}','Controlleruser@destroy');
 Route::get('/mahasiswa','Controllermahasiswa@index');
 Route::get('/mahasiswa/{npm}','Controllermahasiswa@show');
 
+//Dosen
+Route::get('/dosen','Controllerdosen@index');
+Route::get('/dosen/{nidn}','Controllerdosen@show');
+
+
+//mp
+Route::get('/matapraktikum','MataPraktikumController@index');
+Route::get('/matapraktikum/{id_mata_praktikum}','MataPraktikumController@show');
+
+
 Route::get('/', function () {
     return view('welcome');
 });
