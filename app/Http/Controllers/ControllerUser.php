@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
 use Illuminate\Http\Request;
+use App\Transformers\UserTransformer;
 
 class ControllerUser extends Controller
 {
@@ -11,20 +12,25 @@ class ControllerUser extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
         //
-        $data = \App\User::all();
+        $users  = $user->all();
 
-    if(count($data) > 0){ //mengecek apakah data kosong atau tidak
-        $res['message'] = "Success!";
-        $res['user'] = $data;
-        return response($res);
-    }
-    else{
-        $res['message'] = "Empty!";
-        return response($res);
-    }
+    // if(count($data) > 0){ //mengecek apakah data kosong atau tidak
+    //     $res['message'] = "Success!";
+    //     $res['user'] = $data;
+    //     return response($res);
+    // }
+    // else{
+    //     $res['message'] = "Empty!";
+    //     return response($res);
+    // }
+
+         return fractal()
+            ->collection($users)
+            ->transformWith(new UserTransformer)
+            ->toArray();
     }
 
     /**

@@ -14,4 +14,7 @@ class User extends Model
     public function dosen(){
     	return $this->belongsTo('app\dosen');
     }
+    public function matapraktikum(){
+    	return $this->belongsTo('app\mata_praktikum');
+    }
 }
