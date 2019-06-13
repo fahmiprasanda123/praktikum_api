@@ -13,10 +13,9 @@ class UserTransformer extends TransformerAbstract
     public function transform(User $user)
     {
         return [
-            
             'nama'          => $user->nama,
-
             'username'         => $user->username,
+            'registered' => $user->created_at,
         ];
     }
 }

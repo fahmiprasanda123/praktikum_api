@@ -11,6 +11,9 @@
 |
 */
 
+//auth
+Route::post('/auth/register','authcontroller@register');
+
 //user saja
 Route::get('/user','Controlleruser@index');
 Route::get('/user/{id}','Controlleruser@show');

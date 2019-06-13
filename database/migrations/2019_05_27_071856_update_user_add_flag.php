@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdateUserTableApiTokeField extends Migration
+class UpdateUserAddFlag extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,8 @@ class UpdateUserTableApiTokeField extends Migration
     {
         //
         Schema::table('user',function(Blueprint $table){
-            $table->string('api_token')->after('password');
+            $table->string('status_flag')->after('password');
+            $table->string('level')->after('api_token');
         });
     }
 
@@ -27,8 +28,9 @@ class UpdateUserTableApiTokeField extends Migration
     public function down()
     {
         //
-          Schema::table('user',function(Blueprint $table){
-            $table->dropColumn('api_token');
+         Schema::table('user',function(Blueprint $table){
+            $table->dropColumn('status_flag');
+            $table->dropColumn('level');
         });
     }
 }
