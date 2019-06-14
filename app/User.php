@@ -1,12 +1,14 @@
 <?php
 
 namespace App;
-
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class User extends Authenticatable
 {
     //
+     use Notifiable;
     protected $table = 'user';
 
     /**
@@ -15,7 +17,7 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'nama', 'username', 'email','status_flag','password', 'api_token'
+        'nama', 'username', 'email','status_flag','password','api_token'
     ];
 
     public function mahasiswa(){

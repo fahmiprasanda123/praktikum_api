@@ -13,6 +13,8 @@
 
 //auth
 Route::post('/auth/register','authcontroller@register');
+Route::post('/auth/login', 'AuthController@login');
+
 
 //user saja
 Route::get('/user','Controlleruser@index');
