@@ -44,6 +44,7 @@ class MataPraktikumController extends Controller
     $nidn = $request->input('nidn');
     $id_asisten = $request->input('id_asisten');
     $npm = $request->input('npm');
+    $jadwal = $request->input('jadwal');
     
     $data = new \App\mata_praktikum();
     
@@ -51,6 +52,7 @@ class MataPraktikumController extends Controller
     $data->nidn = $nidn;
     $data->id_asisten = $id_asisten;
     $data->npm = $npm;
+    $data->jadwal = $jadwal;
 
         if($data->save()){
             $res['message'] = "Success!";

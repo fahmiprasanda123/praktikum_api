@@ -23,7 +23,7 @@ class KepalaLabController extends Controller
     	}
     }
 
-        public function show($id)
+        public function show($id_kepala_lab)
     {
         //
          $data = \App\Kepala_lab::where('id_kepala_lab',$id_kepala_lab)->get();
@@ -38,7 +38,7 @@ class KepalaLabController extends Controller
         return response($res);
     }
     }
-    
+
      public function store(Request $request)
     {
         //

@@ -43,6 +43,31 @@ Route::post('/matapraktikum/add','MataPraktikumController@store');
 
 //kepala lab
 Route::get('/kepalalab','KepalaLabController@index');
+Route::get('/kepalalab/{id_kepala_lab}','KepalaLabController@show');
+
+//laboram
+Route::get('/laboram','LaboramController@index');
+Route::get('/laboram/{id_laboram}','LaboramController@show');
+
+//asisten
+Route::get('/asisten','asistenController@index');
+Route::get('/asisten/{id_asisten}','asistenController@show');
+
+
+//TU
+Route::get('/TU','TuController@index');
+Route::get('/TU/{id_tu}','TuController@show');
+
+
+//modul
+Route::get('/modul','modulController@index');
+Route::get('/modul/{id_modul}','modulController@show');
+
+//nilai
+Route::get('/nilai','NilaiController@index');
+Route::get('/nilai/{id_nilai}','nilaiController@show');
+
+
 
 Route::get('/', function () {
     return view('welcome');
