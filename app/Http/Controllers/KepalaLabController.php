@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class MataPraktikumController extends Controller
+class KepalaLabController extends Controller
 {
-    public function index(){
+    //
+    public function index()
+    {
         //
-        $data = \App\mata_praktikum::all();
+        $data = \App\Kepala_lab::all();
 
     if(count($data) > 0){ //mengecek apakah data kosong atau tidak
         $res['message'] = "Success!";
-        $res['mp'] = $data;
+        $res['Kepala_lab'] = $data;
         return response($res);
     }
     else{
@@ -21,21 +23,22 @@ class MataPraktikumController extends Controller
     	}
     }
 
-        public function show($id_mata_praktikum){
+        public function show($id)
+    {
         //
-
-         $data = \App\mata_praktikum::where('id_mata_praktikum',$id_mata_praktikum)->get();
+         $data = \App\Kepala_lab::where('id_kepala_lab',$id_kepala_lab)->get();
 
     if(count($data) > 0){ //mengecek apakah data kosong atau tidak
         $res['message'] = "Success!";
-        $res['mp'] = $data;
+        $res['Kepala_lab'] = $data;
         return response($res);
-    }else{
+    }
+    else{
         $res['message'] = "Failed!";
         return response($res);
-    	}
     }
-
+    }
+    
      public function store(Request $request)
     {
         //

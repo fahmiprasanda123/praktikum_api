@@ -23,6 +23,9 @@ Route::post('/user/store','Controlleruser@store');
 Route::put('/user/update/{id}','Controlleruser@update');
 Route::delete('/user/delete/{id}','Controlleruser@destroy');
 
+//user cek token
+Route::get('user/api/token', 'Controlleruser@token')->middleware('auth:api');
+Route::get('user/api/token/{id}', 'Controlleruser@tokenById')->middleware('auth:api');
 //mahasiswa
 Route::get('/mahasiswa','Controllermahasiswa@index');
 Route::get('/mahasiswa/{npm}','Controllermahasiswa@show');
@@ -35,7 +38,11 @@ Route::get('/dosen/{nidn}','Controllerdosen@show');
 //mp
 Route::get('/matapraktikum','MataPraktikumController@index');
 Route::get('/matapraktikum/{id_mata_praktikum}','MataPraktikumController@show');
+Route::post('/matapraktikum/add','MataPraktikumController@store');
 
+
+//kepala lab
+Route::get('/kepalalab','KepalaLabController@index');
 
 Route::get('/', function () {
     return view('welcome');

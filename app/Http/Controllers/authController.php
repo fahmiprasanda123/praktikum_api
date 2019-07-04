@@ -54,6 +54,8 @@ class AuthController extends Controller
             ->transformWith(new UserTransformer)
             ->addMeta([
                 'token' => $user->api_token,
+                'email' => $user->email,
+                
             ])
             ->toArray();
     }

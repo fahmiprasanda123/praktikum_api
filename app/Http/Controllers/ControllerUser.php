@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Transformers\UserTransformer;
-
+use Auth;
 class ControllerUser extends Controller
 {
     /**
@@ -12,25 +12,50 @@ class ControllerUser extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function token(User $user)
+    {
+        $user = $user->find(Auth::user()->id);
+
+        return fractal()
+            ->item($user)
+            ->transformWith(new UserTransformer)
+            ->includeMahasiswa()
+            ->includeDosen()
+            ->toArray();
+    }
+
+     public function tokenById(User $user, $id)
+    {
+        $user = $user->find($id);
+
+        return fractal()
+            ->item($user)
+            ->transformWith(new UserTransformer)
+            ->includeMahasiswa()
+            ->includeDosen()
+            ->toArray();
+    }
+
     public function index(User $user)
     {
         //
         $users  = $user->all();
 
-    // if(count($data) > 0){ //mengecek apakah data kosong atau tidak
-    //     $res['message'] = "Success!";
-    //     $res['user'] = $data;
-    //     return response($res);
-    // }
-    // else{
-    //     $res['message'] = "Empty!";
-    //     return response($res);
-    // }
+    if(count($users) > 0){ //mengecek apakah data kosong atau tidak
+        $res['message'] = "Success!";
+        $res['user'] = $users;
+        return response($res);
+    }
+    else{
+        $res['message'] = "Empty!";
+        return response($res);
+    }
 
-         return fractal()
-            ->collection($users)
-            ->transformWith(new UserTransformer)
-            ->toArray();
+         // return fractal()
+         //    ->collection($users)
+         //    ->transformWith(new UserTransformer)
+         //    ->toArray();
     }
 
     /**
@@ -56,12 +81,18 @@ class ControllerUser extends Controller
     $username = $request->input('username');
     $email = $request->input('email');
     $password = $request->input('password');
+    $status_flag = $request->input('status_flag');
+    $level = $request->input('level');
+    
 
     $data = new \App\user();
     $data->nama = $nama;
     $data->username = $username;
     $data->email = $email;
-    $data->password = $password;
+    $data->status_flag = $status_flag;
+    $data->level = $level;
+    $data->password = bcrypt($password);
+    $data->api_token = bcrypt($email);
 
     if($data->save()){
         $res['message'] = "Success!";
@@ -118,12 +149,18 @@ public function update(Request $request, $id)
     $username = $request->input('username');
     $email = $request->input('email');
     $password = $request->input('password');
+    $status_flag = $request->input('status_flag');
+    $level = $request->input('level');
+    
 
     $data = \App\user::where('id',$id)->first();
     $data->nama = $nama;
     $data->username = $username;
     $data->email = $email;
-    $data->password = $password;
+    $data->status_flag = $status_flag;
+    $data->level = $level;
+    $data->password = bcrypt($password);
+    $data->api_token = bcrypt($email);
 
     if($data->save()){
         $res['message'] = "Success!";
