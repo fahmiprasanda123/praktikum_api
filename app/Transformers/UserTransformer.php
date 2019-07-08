@@ -9,7 +9,7 @@ use League\Fractal\TransformerAbstract;
 class UserTransformer extends TransformerAbstract
 {
     protected $availableIncludes = [
-        'mahasiswa','dosen'
+        'mahasiswa','dosen','laboram','asisten','kepala_lab','tu'
     ];
 
     public function transform(User $user)
@@ -32,5 +32,32 @@ class UserTransformer extends TransformerAbstract
 
         return $this->collection($dosen, new DosenTransformer);
     }
+
+    public function includeLaboram(User $user)
+    {
+        $laboram  = $user->laboram()->latestFirst()->get();
+
+        return $this->collection($laboram, new LaboramTransformer);
+    } 
+     public function includeAsisten(User $user)
+    {
+        $asisten  = $user->asisten()->latestFirst()->get();
+
+        return $this->collection($asisten, new AsistenTransformer);
+    } 
+
+         public function includeKepalaLab(User $user)
+    {
+        $kepala_lab  = $user->kepala_lab()->latestFirst()->get();
+
+        return $this->collection($kepala_lab, new KepalaLabTransformer);
+    } 
+
+         public function includeTu(User $user)
+    {
+        $Tu  = $user->TU()->latestFirst()->get();
+
+        return $this->collection($Tu, new TuTransformer);
+    }     
 
 }

@@ -21,7 +21,11 @@ class ControllerUser extends Controller
             ->item($user)
             ->transformWith(new UserTransformer)
             ->includeMahasiswa()
+            ->includeLaboram()
             ->includeDosen()
+            ->includeAsisten()
+            ->includekepala_lab()
+            ->includeTu()
             ->toArray();
     }
 
@@ -33,7 +37,11 @@ class ControllerUser extends Controller
             ->item($user)
             ->transformWith(new UserTransformer)
             ->includeMahasiswa()
+            ->includeLaboram()
             ->includeDosen()
+            ->includeAsisten()
+            ->includekepala_lab()
+            ->includeTu()
             ->toArray();
     }
 
