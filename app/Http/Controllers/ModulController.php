@@ -37,4 +37,20 @@ class ModulController extends Controller
 	        return response($res);
     	}
     }
+        public function store(Request $request)
+    {
+        //
+            $id_praktikum = $request->input('id_praktikum');
+    $file = $request->input('file');
+    
+    $data = new \App\modul();
+    $data->id_praktikum = $id_praktikum;
+    $data->file = $file;
+    
+    if($data->save()){
+        $res['message'] = "Success!";
+        $res['value'] = "$data";
+        return response($res);
+    }
+    }
 }
