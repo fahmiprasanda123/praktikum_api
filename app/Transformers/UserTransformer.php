@@ -17,6 +17,8 @@ class UserTransformer extends TransformerAbstract
         return [
             'nama'          => $user->nama,
             'username'         => $user->username,
+            'email' => $user->email,
+            'status_flag' => $user->status_flag,
             'registered' => $user->created_at,
         ];
     }

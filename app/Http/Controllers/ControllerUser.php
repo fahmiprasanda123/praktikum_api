@@ -50,20 +50,20 @@ class ControllerUser extends Controller
         //
         $users  = $user->all();
 
-    if(count($users) > 0){ //mengecek apakah data kosong atau tidak
-        $res['message'] = "Success!";
-        $res['user'] = $users;
-        return response($res);
-    }
-    else{
-        $res['message'] = "Empty!";
-        return response($res);
-    }
+    // if(count($users) > 0){ //mengecek apakah data kosong atau tidak
+    //     $res['message'] = "Success!";
+    //     $res['user'] = $users;
+    //     return response($res);
+    // }
+    // else{
+    //     $res['message'] = "Empty!";
+    //     return response($res);
+    // }
 
-         // return fractal()
-         //    ->collection($users)
-         //    ->transformWith(new UserTransformer)
-         //    ->toArray();
+         return fractal()
+            ->collection($users)
+            ->transformWith(new UserTransformer)
+            ->toArray();
     }
 
     /**
