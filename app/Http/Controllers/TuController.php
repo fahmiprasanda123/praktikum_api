@@ -37,4 +37,16 @@ class TuController extends Controller
 	        return response($res);
     	}
     }
+    public function add(Request $request)
+    {
+            $user_id = $request->input('user_id');
+    $data = new \App\TU;
+    $data->user_id = $user_id;
+    
+        if($data->save()){
+            $res['message'] = "Success! Menambahkan data TU";
+            $res['TU'] = "$data";
+            return response($res);
+         }
+    }
 }

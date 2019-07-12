@@ -42,7 +42,7 @@ class ControllerMahasiswa extends Controller
     public function store(Request $request)
     {
         //
-            $npm = $request->input('npm');
+    $npm = $request->input('npm');
     $user_id = $request->input('user_id');
     $semester = $request->input('semester');
     $sks = $request->input('sks');
@@ -51,7 +51,7 @@ class ControllerMahasiswa extends Controller
     
 
     $data = new \App\mahasiswa();
-    $data->npm = $npm;
+    $data->NPM = $npm;
     $data->user_id = $user_id;
     $data->semester = $semester;
     $data->sks = $sks;
@@ -72,7 +72,7 @@ class ControllerMahasiswa extends Controller
     $data->status = $status;
 
     if($data->save()){
-        $res['message'] = "Success!";
+        $res['message'] = "Success! update status";
         $res['mahasiswa'] = "$data";
         return response($res);
     }

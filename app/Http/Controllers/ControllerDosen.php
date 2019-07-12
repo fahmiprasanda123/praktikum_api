@@ -36,4 +36,22 @@ class ControllerDosen extends Controller
         return response($res);
     	}
     }
+    public function store(Request $request)
+    {
+        //
+            $nidn = $request->input('nidn');
+    $user_id = $request->input('user_id');
+    
+
+    $data = new \App\dosen();
+    $data->nidn = $nidn;
+    $data->user_id = $user_id;
+    
+
+    if($data->save()){
+        $res['message'] = "Success! Menambahkan data dosen";
+         $res['value'] = "Nidn : $data->nidn";
+        return response($res);
+    }
+    }
 }

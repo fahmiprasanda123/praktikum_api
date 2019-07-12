@@ -102,9 +102,10 @@ class ControllerUser extends Controller
     $data->password = bcrypt($password);
     $data->api_token = bcrypt($email);
 
+
     if($data->save()){
-        $res['message'] = "Success!";
-        $res['value'] = "$data";
+        $res['message'] = "Success! Menambahkan data";
+         $res['value'] = "NAMA : $data->nama USERNAME : $data->username ";
         return response($res);
     }
     }
@@ -121,15 +122,19 @@ class ControllerUser extends Controller
 
          $data = \App\User::where('id',$id)->get();
 
-    if(count($data) > 0){ //mengecek apakah data kosong atau tidak
-        $res['message'] = "Success!";
-        $res['user'] = $data;
-        return response($res);
-    }
-    else{
-        $res['message'] = "Failed!";
-        return response($res);
-    }
+    // if(count($data) > 0){ //mengecek apakah data kosong atau tidak
+    //     $res['message'] = "Success!";
+    //     $res['user'] = $data;
+    //     return response($res);
+    // }
+    // else{
+    //     $res['message'] = "Failed!";
+    //     return response($res);
+                  return fractal()
+            ->collection($data)
+            ->transformWith(new UserTransformer)
+            ->toArray();
+    // }
     }
 
     /**
@@ -171,8 +176,8 @@ public function update(Request $request, $id)
     $data->api_token = bcrypt($email);
 
     if($data->save()){
-        $res['message'] = "Success!";
-        $res['user'] = "$data";
+        $res['message'] = "Success Mengubah data";
+        $res['user'] = "NAMA : $data->nama USERNAME : $data->username ";
         return response($res);
     }
     else{
@@ -191,10 +196,10 @@ public function update(Request $request, $id)
     {
         //
         $data = \App\User::where('id',$id)->first();
-
+        $cek = $data->nama;
     if($data->delete()){
-        $res['message'] = "Success!";
-        $res['user'] = "$data";
+        $res['message'] = "Success! Menghapus USER";
+        $res['user'] = "$cek";
         return response($res);
     }
     else{

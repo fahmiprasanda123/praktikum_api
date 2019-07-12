@@ -36,4 +36,21 @@ class asistenController extends Controller
         return response($res);
     	}
     }
+         public function add(Request $request)
+    {
+        //
+            
+            $user_id = $request->input('user_id');
+    
+    
+
+    $data = new \App\asisten();
+    $data->user_id = $user_id;
+    
+        if($data->save()){
+            $res['message'] = "Success! Menambahkan data asisten";
+            $res['asisten'] = "$data";
+            return response($res);
+         }
+    }
 }

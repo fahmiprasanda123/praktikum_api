@@ -40,11 +40,11 @@ class ModulController extends Controller
         public function store(Request $request)
     {
         //
-            $id_praktikum = $request->input('id_praktikum');
+            $id_praktikum = $request->input('id_mata_praktikum');
     $file = $request->input('file');
     
     $data = new \App\modul();
-    $data->id_praktikum = $id_praktikum;
+    $data->id_mata_praktikum = $id_praktikum;
     $data->file = $file;
     
     if($data->save()){
@@ -52,5 +52,19 @@ class ModulController extends Controller
         $res['value'] = "$data";
         return response($res);
     }
+    }
+            public function show_mp($id_mp)
+    {
+        //
+         $data = \App\modul::where('id_mata_praktikum',$id_mp)->get();
+
+    if(count($data) > 0){ //mengecek apakah data kosong atau tidak
+        $res['message'] = "Success!";
+        $res['modul'] = $data;
+        return response($res);
+    }else{
+            $res['message'] = "Failed!";
+            return response($res);
+        }
     }
 }

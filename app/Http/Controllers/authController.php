@@ -18,7 +18,7 @@ class AuthController extends Controller
             'username'      => 'required',
             'email'     => 'required|email|unique:user',
             'password'  => 'required|min:6',
-            'status_flag'  => 'required',
+            
         ]);
 
         $user = $user->create([
@@ -26,7 +26,6 @@ class AuthController extends Controller
             'username'      => $request->username,
             'email'     => $request->email,
             'password'  => bcrypt($request->password),
-            'status_flag'  => $request->status_flag,
             'api_token' => bcrypt($request->email)
         ]);
 
@@ -34,7 +33,7 @@ class AuthController extends Controller
             ->item($user)
             ->transformWith(new UserTransformer)
             ->addMeta([
-                'token' => $user->api_token,
+                // 'token' => $user->api_token,
             ])
             ->toArray();
 
@@ -53,7 +52,7 @@ class AuthController extends Controller
             ->item($user)
             ->transformWith(new UserTransformer)
             ->addMeta([
-                'token' => $user->api_token,
+                // 'token' => $user->api_token,
                 'email' => $user->email,
                 
             ])
